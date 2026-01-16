@@ -1,0 +1,174 @@
+/* --- Footer General Styles --- */
+.footer-container {
+    background-color: var(--white-color);
+    color: var(--gray-800);
+    position: relative;
+}
+
+.footer-wave {
+    line-height: 0;
+    overflow: hidden;
+}
+
+.footer-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px; /* smaller wave height */
+}
+
+
+.footer-wave .shape-fill {
+    fill: var(--lime-500);
+}
+
+.footer-content {
+    background-color: var(--white-color);
+    padding: 4rem 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+    }
+}
+
+.footer-column .footer-logo {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--lime-500);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.footer-column .footer-about {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: var(--gray-700);
+}
+
+.footer-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--lime-500);
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.footer-column p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0 0 0.5rem 0;
+    color: var(--gray-800);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a, .email-link {
+    font-size: 0.875rem;
+    color: var(--gray-800);
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.footer-links a:hover, .email-link:hover {
+    color: var(--lime-500);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--lime-500);
+    transition: color 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+    color: var(--gray-800);
+}
+
+/* --- Footer Bottom Bar --- */
+.footer-bottom {
+    background-color: var(--lime-500);
+    padding: 1.5rem 0;
+    font-size: 0.875rem;
+    color: var(--white-color);
+}
+
+.footer-bottom-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.bottom-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.bottom-links a {
+    color: var(--white-color);
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+}
+.bottom-links a:hover {
+    color: var(--gray-800);
+}
+
+/* --- Floating WhatsApp Icon --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    transition: transform 0.2s ease-in-out;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
