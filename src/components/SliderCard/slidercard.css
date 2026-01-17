@@ -1,45 +1,72 @@
+/* slidercard.css */
 .homeSlide .box {
-    margin-top: 80px;
-    padding: 0 40px 60px;
+  margin-top: 40px; /* Reduced top margin for better flow */
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%); /* Soft Lime Gradient */
+  border-radius: 20px; /* Modern rounded look */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
 }
 
 .homeSlide h1 {
-    font-size: 45px;
-    line-height: 55px;
-    margin: 50px 0 20px 0;
+  font-size: 50px; /* Bigger font */
+  line-height: 1.2;
+  margin: 30px 0 20px 0;
+  color: #2d3436; /* Dark grey instead of harsh black */
+  font-weight: 700;
 }
 
 .homeSlide p {
-    margin: 20px 0;
+  margin: 20px 0 40px 0;
+  font-size: 18px;
+  color: #636e72;
+  max-width: 80%;
 }
 
+/* New Button Style */
+.btn-primary {
+  background-color: #5bb318; /* Vibrant Lime */
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 18px;
+  border-radius: 50px; /* Pill shape */
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(91, 179, 24, 0.3); /* Green glow shadow */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #4a9412; /* Darker lime on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 8px 20px rgba(91, 179, 24, 0.4);
+}
+
+/* Dots navigation */
 .homeSlide ul {
-    position: absolute;
-    bottom: 20px;
+  position: absolute;
+  bottom: 30px;
 }
 
 .homeSlide ul li {
-    border: 2px solid #b8b7b7;
-    border-radius: 50%;
-    padding: 10px;
+  border: 2px solid #5bb318; /* Lime border */
+  border-radius: 50%;
+  padding: 8px;
+  margin: 0 5px;
 }
 
-.homeSlide ul li button {
-    background: transparent !important;
-    color: transparent !important;
+.homeSlide ul li.slick-active {
+  background-color: #5bb318; /* Filled lime for active dot */
 }
 
 .homeSlide ul li button::before {
-    font-size: 15px !important;
-    color: #0f3460;
-    position: absolute;
-    top: 2px;
-    left: 0;
-    margin: auto;
+  font-size: 12px !important;
+  color: transparent !important; /* Hide default slick dots */
 }
 
 .homeSlide .box img {
-    width: 100%;
-    max-height: 300px;
-    object-fit: contain;
+  width: 100%;
+  max-height: 400px; /* Increased height */
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); /* Shadow specifically for the image PNG */
 }

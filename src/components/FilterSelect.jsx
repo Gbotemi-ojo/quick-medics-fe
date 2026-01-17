@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select'; 
 import { useNavigate } from 'react-router-dom';
-
-const API_URL = "http://localhost:5000/api/drugs/categories";
+import { EXTERNAL_API_URL } from '../api';
+const API_URL = `${EXTERNAL_API_URL}/drugs/categories`;
 
 const FilterSelect = () => {
     const navigate = useNavigate();

@@ -3,9 +3,10 @@ import Wrapper from "../components/wrapper/Wrapper";
 import Section from "../components/Section";
 import SliderHome from "../components/Slider";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
+import { EXTERNAL_API_URL } from "../api";
 
 // API URL
-const API_URL = "http://localhost:5000/api/drugs";
+const API_URL = `${EXTERNAL_API_URL}/drugs`;
 
 const Home = () => {
   useWindowScrollToTop();
@@ -68,31 +69,51 @@ const Home = () => {
     fetchHomeData();
   }, []);
 
-  if (loading) return <div style={{padding:'100px', textAlign:'center'}}>Loading...</div>;
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '50vh', 
+        color: '#5bb318', 
+        fontSize: '20px', 
+        fontWeight: 'bold' 
+      }}>
+        Loading Quick Medics...
+      </div>
+    );
+  }
 
   return (
     <Fragment>
       <SliderHome />
       <Wrapper />
       
-      {/* Section 1: Multivitamins / Supplements */}
+      {/* Section 1: Multivitamins / Supplements 
+          Changed bgColor to #f0fff4 (Light Mint) to match the Lime theme 
+      */}
       <Section
         title="Multivitamins & Supplements"
-        bgColor="#f6f9fc"
+        bgColor="#f0fff4"
         productItems={supplements.length > 0 ? supplements : newArrivals}
       />
       
-      {/* Section 2: Pain Relief */}
+      {/* Section 2: Pain Relief 
+          Kept White to create contrast with the sections above and below
+      */}
       <Section
         title="Pain Relief"
-        bgColor="white"
+        bgColor="#ffffff"
         productItems={painKillers.length > 0 ? painKillers : newArrivals}
       />
       
-      {/* Section 3: Antibiotics */}
+      {/* Section 3: Antibiotics 
+          Changed bgColor to #f0fff4 (Light Mint) to match the Lime theme
+      */}
       <Section 
         title="Antibiotics" 
-        bgColor="#f6f9fc" 
+        bgColor="#f0fff4" 
         productItems={antibiotics.length > 0 ? antibiotics : newArrivals} 
       />
     </Fragment>

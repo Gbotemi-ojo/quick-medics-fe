@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import { loginSuccess } from "../app/features/auth/authSlice";
 import { toast } from "react-toastify";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
-
-const API_URL = "http://localhost:5000/api/auth";
+import { EXTERNAL_API_URL } from "../api";
+const API_URL = `${EXTERNAL_API_URL}/auth`;
 
 const Register = () => {
   useWindowScrollToTop();

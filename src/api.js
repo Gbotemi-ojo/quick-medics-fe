@@ -1,5 +1,6 @@
 // src/api.js
-const API_URL = 'http://localhost:5000/api';
+// const EXTERNAL_API_URL = 'http://localhost:5000/api';
+export const EXTERNAL_API_URL = 'https://quick-medics-be.vercel.app/api'
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
@@ -13,7 +14,7 @@ const getAuthHeaders = () => {
 
 // --- AUTH ---
 export const loginUser = async (email, password) => {
-  const response = await fetch(`${API_URL}/auth/login`, {
+  const response = await fetch(`${EXTERNAL_API_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -23,7 +24,7 @@ export const loginUser = async (email, password) => {
 };
 
 export const requestPasswordReset = async (email) => {
-  const response = await fetch(`${API_URL}/auth/forgot-password`, {
+  const response = await fetch(`${EXTERNAL_API_URL}/auth/forgot-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email }),
@@ -36,7 +37,7 @@ export const requestPasswordReset = async (email) => {
 };
 
 export const confirmPasswordReset = async (email, otp, newPassword) => {
-  const response = await fetch(`${API_URL}/auth/reset-password`, {
+  const response = await fetch(`${EXTERNAL_API_URL}/auth/reset-password`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, otp, newPassword }),
@@ -51,7 +52,7 @@ export const confirmPasswordReset = async (email, otp, newPassword) => {
 // --- DRUGS (SHOP) ---
 export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'created_at', sortOrder = 'desc') => {
   const headers = getAuthHeaders();
-  const url = `${API_URL}/drugs?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+  const url = `${EXTERNAL_API_URL}/drugs?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
 
   const response = await fetch(url, { headers: { 'Authorization': headers.Authorization } });
   
@@ -67,14 +68,14 @@ export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'cr
 
 // --- PAYMENT & ORDERS ---
 export const getPaystackKey = async () => {
-  const response = await fetch(`${API_URL}/payment/config`);
+  const response = await fetch(`${EXTERNAL_API_URL}/payment/config`);
   if (!response.ok) throw new Error('Failed to fetch payment config');
   const result = await response.json();
   return result.key; 
 };
 
 export const verifyPayment = async (paymentData) => {
-  const response = await fetch(`${API_URL}/payment/verify`, {
+  const response = await fetch(`${EXTERNAL_API_URL}/payment/verify`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(paymentData),
@@ -90,7 +91,7 @@ export const verifyPayment = async (paymentData) => {
 
 export const fetchMyOrders = async () => {
     // Added timestamp to prevent caching
-    const url = `${API_URL}/orders/my-orders?t=${new Date().getTime()}`;
+    const url = `${EXTERNAL_API_URL}/orders/my-orders?t=${new Date().getTime()}`;
     const response = await fetch(url, {
         headers: getAuthHeaders(),
     });
@@ -100,14 +101,14 @@ export const fetchMyOrders = async () => {
 
 // --- USER PROFILE ---
 export const fetchProfile = async () => {
-    const response = await fetch(`${API_URL}/profile`, { headers: getAuthHeaders() });
+    const response = await fetch(`${EXTERNAL_API_URL}/profile`, { headers: getAuthHeaders() });
     if(!response.ok) throw new Error("Failed to fetch profile");
     const result = await response.json();
     return result.data;
 };
 
 export const updateProfile = async (profileData) => {
-    const response = await fetch(`${API_URL}/profile`, {
+    const response = await fetch(`${EXTERNAL_API_URL}/profile`, {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify(profileData)
@@ -117,7 +118,7 @@ export const updateProfile = async (profileData) => {
 };
 
 export const changePassword = async (passwords) => {
-    const response = await fetch(`${API_URL}/profile/password`, {
+    const response = await fetch(`${EXTERNAL_API_URL}/profile/password`, {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify(passwords)

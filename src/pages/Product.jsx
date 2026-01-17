@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import ProductReviews from "../components/ProductReviews/ProductReviews";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
-
-const API_URL = "http://localhost:5000/api/drugs";
+import { EXTERNAL_API_URL } from "../api";
+const API_URL = `${EXTERNAL_API_URL}/drugs`;
 
 const Product = () => {
   const { id } = useParams();

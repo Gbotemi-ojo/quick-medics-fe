@@ -1,103 +1,124 @@
+/* product-card.css */
+.product {
+  background: #fff;
+  padding: 20px;
+  position: relative;
+  border-radius: 15px; /* Softer corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Very subtle shadow default */
+  margin: 15px;
+  transition: all 0.3s ease; /* Smooth animation */
+  border: 1px solid transparent;
+}
+
+.product:hover {
+  transform: translateY(-10px); /* Lifts up when hovered */
+  box-shadow: 0 15px 30px rgba(91, 179, 24, 0.15); /* Lime tinted shadow on hover */
+  border-color: #e2e8f0;
+}
+
 .product img {
-    width: 100%;
-    height: 200px !important;
-    object-fit: contain;
-    cursor: pointer;
+  width: 100%;
+  height: 180px !important;
+  object-fit: contain;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.product:hover img {
+  transform: scale(1.05); /* Subtle zoom on image */
 }
 
 .discount {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #0f3460;
-    padding: 3px 10px;
-    font-size: 12px;
-    border-radius: 50px;
-    color: #fff;
-    margin: 10px;
-}
-
-.product {
-    background: #fff;
-    padding: 20px;
-    position: relative;
-    border-radius: 8px;
-    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-    margin: 10px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ff6b6b; /* Red pop for discount OR use #5bb318 for lime */
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #fff;
+  z-index: 2;
 }
 
 .product h3 {
-    margin: 10px 0;
-    font-weight: 500;
-    font-size: 17px;
-    cursor: pointer;
+  margin: 10px 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: #2d3436;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product .rate i {
-    font-size: 15px;
-    color: #ffcd4e;
-    margin: 5px 5px 5px 0;
+  font-size: 14px;
+  color: #ffcd4e; /* Gold stars */
+  margin-right: 3px;
 }
 
 .product .price {
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .price h4 {
-    margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5bb318; /* Price is now Lime */
+  margin: 0;
 }
 
-.price button {
-    background: none;
-    color: #0f3460;
-    font-size: 20px;
-    transition: 0.5s;
-    border: 1px solid rgb(3 0 71 / 9%);
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
+.price button.add {
+  background: #f0fff4; /* Very light lime bg */
+  color: #5bb318; /* Lime icon */
+  font-size: 20px;
+  transition: 0.3s;
+  border: 1px solid #5bb318;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.price button:hover {
-    cursor: pointer;
-    background-color: #0f3460;
-    color: #fff;
-}
-
-button.add {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    border-radius: 50%;
+.price button.add:hover {
+  cursor: pointer;
+  background-color: #5bb318; /* Filled Lime */
+  color: #fff; /* White Icon */
+  box-shadow: 0 5px 15px rgba(91, 179, 24, 0.3);
 }
 
 .product-like {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.product-like label {
-    background-color: #0f3460;
-    padding: 1px 10px;
-    font-size: 12px;
-    color: white;
-    border-radius: 50px;
-}
-
-.product-like ion-icon {
-    font-size: 20px;
-    margin: 10px 3px;
-    cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: 0.3s ease;
 }
 
 .product:hover .product-like {
-    opacity: 1;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.product-like ion-icon {
+  background-color: #fff;
+  color: #5bb318;
+  padding: 8px;
+  font-size: 20px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.product-like ion-icon:hover {
+  background-color: #5bb318;
+  color: #fff;
 }

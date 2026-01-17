@@ -2,7 +2,7 @@
 import './privacy.css';
 
 /**
- * Privacy Policy for Novacrest Pharmacy
+ * Privacy Policy for Quick Medics Pharmacy
  * File: privacy.jsx
  */
 export default function PrivacyPolicy() {
@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
       <h1 className="privacy-title">Privacy Policy</h1>
 
       <p className="privacy-text">
-        At <strong>Novacrest Pharmacy</strong> ("we", "us", or "our"), your privacy is of utmost importance. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you visit our website or use our services.
+        At <strong>Quick Medics Pharmacy</strong> ("we", "us", or "our"), your privacy is of utmost importance. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you visit our website or use our services.
       </p>
 
       <h2 className="privacy-section-title">1. Information We Collect</h2>
@@ -57,10 +57,10 @@ export default function PrivacyPolicy() {
 
       <h2 className="privacy-section-title">8. Contact Us</h2>
       <p className="privacy-text">
-        Novacrest Pharmacy<br />
-        Email: <a href="mailto:privacy@novacrestpharmacy.com" className="privacy-link">privacy@novacrestpharmacy.com</a><br />
-        Phone: +1 (800) 123-4567<br />
-        Address: 1234 Health Ave, Wellness City, Country
+        Quick Medics Pharmacy<br />
+        Email: <a href="mailto:privacy@QuickMedicspharmacy.com" className="privacy-link">privacy@QuickMedicspharmacy.com</a><br />
+        Phone: 0816 394 3804<br />
+        Address: 2,3,4,5 Guide Plaza, Alaja Road, Megida-Ipaja Lagos NG, Ayobo-Ipaja Rd, Ayobo, 100270
       </p>
     </div>
   );

@@ -6,9 +6,9 @@ import ShopList from "../components/ShopList";
 import Banner from "../components/Banner/Banner";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { useSearchParams } from "react-router-dom"; 
-
+import { EXTERNAL_API_URL } from "../api";
 // API URL
-const API_URL = "http://localhost:5000/api/drugs";
+const API_URL = `${EXTERNAL_API_URL}/drugs`;
 
 const Shop = () => {
   const [products, setProducts] = useState([]); 

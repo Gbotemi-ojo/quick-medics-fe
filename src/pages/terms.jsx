@@ -4,12 +4,12 @@ const Terms = () => {
   return (
     <div className="terms-container">
       <h1>Terms and Conditions</h1>
-      <p><strong>Effective Date:</strong> May 16, 2025</p>
+      <p><strong>Effective Date:</strong> Jan 1, 2026</p>
 
       <section>
         <h2>1. Acceptance of Terms</h2>
         <p>
-          By accessing and using Novacrest Pharmacy's website and services, you agree to comply with these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using our services.
+          By accessing and using Quick Medics Pharmacy's website and services, you agree to comply with these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using our services.
         </p>
       </section>
 
@@ -51,7 +51,7 @@ const Terms = () => {
       <section>
         <h2>7. Intellectual Property</h2>
         <p>
-          All content on this website, including text, images, logos, and designs, is the property of Novacrest Pharmacy or its licensors. Unauthorized reproduction, distribution, or use of our content is prohibited.
+          All content on this website, including text, images, logos, and designs, is the property of Quick Medics Pharmacy or its licensors. Unauthorized reproduction, distribution, or use of our content is prohibited.
         </p>
       </section>
 
@@ -65,14 +65,14 @@ const Terms = () => {
       <section>
         <h2>9. Limitation of Liability</h2>
         <p>
-          To the fullest extent permitted by law, Novacrest Pharmacy is not liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use our website, services, or products. This limitation includes but is not limited to damages for loss of data, income, or business opportunities.
+          To the fullest extent permitted by law, Quick Medics Pharmacy is not liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use our website, services, or products. This limitation includes but is not limited to damages for loss of data, income, or business opportunities.
         </p>
       </section>
 
       <section>
         <h2>10. Indemnification</h2>
         <p>
-          You agree to indemnify and hold harmless Novacrest Pharmacy, its employees, and affiliates from any claims, liabilities, damages, or expenses arising from your use of our website or services.
+          You agree to indemnify and hold harmless Quick Medics Pharmacy, its employees, and affiliates from any claims, liabilities, damages, or expenses arising from your use of our website or services.
         </p>
       </section>
 
@@ -96,9 +96,9 @@ const Terms = () => {
           If you have any questions or concerns about these Terms and Conditions, please contact us:
         </p>
         <ul>
-          <li><strong>Phone:</strong> +234 916 543 4330</li>
-          <li><strong>Email:</strong> support@novacrestpharmacy.ng</li>
-          <li><strong>Address:</strong> Shop 4 Yummy Yummy Plaza, Sam Ethnan Air Force Base, Ikeja, Lagos </li>
+          <li><strong>Phone:</strong> 0816 394 3804</li>
+          <li><strong>Email:</strong> support@Quickmedicspharmacy.ng</li>
+          <li><strong>Address:</strong>2,3,4,5 Guide Plaza, Alaja Road, Megida-Ipaja Lagos NG, Ayobo-Ipaja Rd, Ayobo, 100270</li>
         </ul>
       </section>
     </div>
