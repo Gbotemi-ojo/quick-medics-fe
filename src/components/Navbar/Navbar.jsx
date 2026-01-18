@@ -69,7 +69,7 @@ export default function Navbar() {
               <a href="tel:+2348163943804" className="top-bar-link">
                 <PhoneIcon className="icon-small" /><span>0816 394 3804</span>
               </a>
-              <a href="#" className="top-bar-link">
+              <a href="https://wa.me/2348163943804" className="top-bar-link">
                 <span>Chat</span><WhatsAppIcon className="icon-whatsapp" />
               </a>
             </div>
