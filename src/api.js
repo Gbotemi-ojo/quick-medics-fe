@@ -1,7 +1,5 @@
-// src/api.js
-// const EXTERNAL_API_URL = 'http://localhost:5000/api';
-export const EXTERNAL_API_URL = 'https://quick-medics-be.vercel.app/api'
-
+export const EXTERNAL_API_URL = 'https://quick-medics-be.vercel.app/api';
+// export const EXTERNAL_API_URL = 'http://localhost:5000/api';
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   return token ? { 
@@ -12,14 +10,27 @@ const getAuthHeaders = () => {
   };
 };
 
-// --- AUTH ---
+// ... Auth Functions (loginUser, googleLogin, resetPassword) ...
 export const loginUser = async (email, password) => {
   const response = await fetch(`${EXTERNAL_API_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   });
-  if (!response.ok) throw new Error('Login failed');
+  if (!response.ok) {
+     const error = await response.json();
+     throw new Error(error.message || 'Login failed');
+  }
+  return await response.json();
+};
+
+export const googleLogin = async (credential) => {
+  const response = await fetch(`${EXTERNAL_API_URL}/auth/google`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ credential }),
+  });
+  if (!response.ok) throw new Error('Google Login failed');
   return await response.json();
 };
 
@@ -49,7 +60,31 @@ export const confirmPasswordReset = async (email, otp, newPassword) => {
   return await response.json();
 };
 
-// --- DRUGS (SHOP) ---
+// --- HOME CONFIG (NEW) ---
+export const fetchHomeConfig = async () => {
+    try {
+        const response = await fetch(`${EXTERNAL_API_URL}/drugs/home-config`);
+        if (!response.ok) throw new Error("Failed to load home config");
+        const result = await response.json();
+        return result.data;
+    } catch (error) {
+        console.error("Home Config Error:", error);
+        return null; 
+    }
+};
+
+export const fetchCategories = async () => {
+    try {
+        const response = await fetch(`${EXTERNAL_API_URL}/drugs/categories`);
+        if (!response.ok) return [];
+        const result = await response.json();
+        return result.data || [];
+    } catch (error) {
+        console.error("Failed to fetch categories", error);
+        return [];
+    }
+};
+
 export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'created_at', sortOrder = 'desc') => {
   const headers = getAuthHeaders();
   const url = `${EXTERNAL_API_URL}/drugs?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
@@ -58,7 +93,6 @@ export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'cr
   
   if (response.status === 401 || response.status === 403) {
     localStorage.removeItem('token');
-    window.location.reload(); 
     return null;
   }
   
@@ -66,7 +100,7 @@ export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'cr
   return result.data;
 };
 
-// --- PAYMENT & ORDERS ---
+// ... Payment, Orders, Profile functions ...
 export const getPaystackKey = async () => {
   const response = await fetch(`${EXTERNAL_API_URL}/payment/config`);
   if (!response.ok) throw new Error('Failed to fetch payment config');
@@ -90,7 +124,6 @@ export const verifyPayment = async (paymentData) => {
 };
 
 export const fetchMyOrders = async () => {
-    // Added timestamp to prevent caching
     const url = `${EXTERNAL_API_URL}/orders/my-orders?t=${new Date().getTime()}`;
     const response = await fetch(url, {
         headers: getAuthHeaders(),
@@ -99,7 +132,6 @@ export const fetchMyOrders = async () => {
     return await response.json();
 };
 
-// --- USER PROFILE ---
 export const fetchProfile = async () => {
     const response = await fetch(`${EXTERNAL_API_URL}/profile`, { headers: getAuthHeaders() });
     if(!response.ok) throw new Error("Failed to fetch profile");

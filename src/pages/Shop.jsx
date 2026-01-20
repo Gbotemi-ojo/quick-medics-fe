@@ -7,6 +7,8 @@ import Banner from "../components/Banner/Banner";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { useSearchParams } from "react-router-dom"; 
 import { EXTERNAL_API_URL } from "../api";
+import "./shop.css"; // We will create this file next
+
 // API URL
 const API_URL = `${EXTERNAL_API_URL}/drugs`;
 
@@ -18,15 +20,11 @@ const Shop = () => {
   // Pagination States
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  
   const PAGE_LIMIT = 12; 
 
-  // FIX: Removed 'setSearchParams' since we aren't using it
   const [searchParams] = useSearchParams();
-
   useWindowScrollToTop();
 
-  // Reset to Page 1 when Search or Category changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchParams]);
@@ -34,17 +32,15 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      
       const searchTerm = searchParams.get('search') || '';
       const categoryParam = searchParams.get('category') || '';
       
-      if(searchTerm) setBannerTitle(`Search: "${searchTerm}"`);
+      if(searchTerm) setBannerTitle(`Results for "${searchTerm}"`);
       else if(categoryParam) setBannerTitle(categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1));
       else setBannerTitle("Shop");
 
       try {
         let url = `${API_URL}?limit=${PAGE_LIMIT}&page=${currentPage}`;
-        
         if(searchTerm) url += `&search=${encodeURIComponent(searchTerm)}`;
         if(categoryParam) url += `&category=${encodeURIComponent(categoryParam)}`;
 
@@ -63,7 +59,6 @@ const Shop = () => {
             discount: 0, 
             avgRating: 4.5,
           }));
-
           setProducts(mappedProducts);
           setTotalPages(result.data.totalPages || 1);
         } else {
@@ -76,43 +71,46 @@ const Shop = () => {
         setLoading(false);
       }
     };
-
     fetchProducts();
   }, [searchParams, currentPage]); 
 
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-      window.scrollTo(0, 0); 
-    }
+    if (currentPage < totalPages) { setCurrentPage(prev => prev + 1); window.scrollTo(0, 400); }
   };
-
   const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-      window.scrollTo(0, 0);
-    }
+    if (currentPage > 1) { setCurrentPage(prev => prev - 1); window.scrollTo(0, 400); }
   };
 
   return (
     <Fragment>
       <Banner title={bannerTitle} />
-      <section className="filter-bar">
-        <Container className="filter-bar-contianer">
-          <Row className="justify-content-center">
-            <Col md={4}>
-              <FilterSelect />
-            </Col>
-            <Col md={8}>
-              <SearchBar />
-            </Col>
-          </Row>
+      
+      <section className="shop-filter-section">
+        <Container>
+          {/* Floating Filter Card */}
+          <div className="filter-card">
+            <Row className="align-items-center g-3">
+              <Col md={4} sm={12}>
+                <div className="filter-wrapper">
+                    <FilterSelect />
+                </div>
+              </Col>
+              <Col md={8} sm={12}>
+                <div className="search-wrapper">
+                    <SearchBar />
+                </div>
+              </Col>
+            </Row>
+          </div>
         </Container>
+      </section>
+
+      <section className="shop-product-area">
         <Container>
           {loading ? (
-             <div style={{textAlign: 'center', padding: '50px'}}>Loading products...</div>
+             <div className="shop-loading">Loading products...</div>
           ) : products.length === 0 ? (
-             <div style={{textAlign:'center', marginTop:'50px'}}>
+             <div className="shop-empty">
                  <h3>No products found</h3>
                  <p>Try checking your spelling or using general terms like "Malaria"</p>
              </div>
@@ -121,46 +119,13 @@ const Shop = () => {
                <ShopList productItems={products} />
                
                {totalPages > 1 && (
-                 <div style={{
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'center', 
-                    gap: '20px', 
-                    marginTop: '40px',
-                    paddingBottom: '40px'
-                 }}>
-                    <button 
-                      onClick={handlePrev} 
-                      disabled={currentPage === 1}
-                      style={{
-                        padding: '10px 20px', 
-                        background: currentPage === 1 ? '#ddd' : '#0f3460', 
-                        color: 'white', 
-                        border: 'none', 
-                        borderRadius: '5px',
-                        cursor: currentPage === 1 ? 'not-allowed' : 'pointer'
-                      }}
-                    >
-                      Previous
+                 <div className="pagination-container">
+                    <button className="page-btn" onClick={handlePrev} disabled={currentPage === 1}>
+                      <i className="fa fa-chevron-left"></i> Prev
                     </button>
-                    
-                    <span style={{fontWeight: 'bold', color: '#555'}}>
-                        Page {currentPage} of {totalPages}
-                    </span>
-                    
-                    <button 
-                      onClick={handleNext} 
-                      disabled={currentPage === totalPages}
-                      style={{
-                        padding: '10px 20px', 
-                        background: currentPage === totalPages ? '#ddd' : '#0f3460', 
-                        color: 'white', 
-                        border: 'none', 
-                        borderRadius: '5px',
-                        cursor: currentPage === totalPages ? 'not-allowed' : 'pointer'
-                      }}
-                    >
-                      Next
+                    <span className="page-info">Page {currentPage} of {totalPages}</span>
+                    <button className="page-btn" onClick={handleNext} disabled={currentPage === totalPages}>
+                      Next <i className="fa fa-chevron-right"></i>
                     </button>
                  </div>
                )}

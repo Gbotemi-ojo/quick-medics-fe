@@ -1,121 +1,77 @@
 import { Fragment, useEffect, useState } from "react";
-import Wrapper from "../components/wrapper/Wrapper";
-import Section from "../components/Section";
 import SliderHome from "../components/Slider";
+import CategorySection from "../components/CategorySection";
+import Section from "../components/Section";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
-import { EXTERNAL_API_URL } from "../api";
-
-// API URL
-const API_URL = `${EXTERNAL_API_URL}/drugs`;
+import { fetchHomeConfig } from "../api"; 
+import Wrapper from "../components/wrapper/Wrapper";
 
 const Home = () => {
   useWindowScrollToTop();
   
-  // State for each section
-  const [supplements, setSupplements] = useState([]);
-  const [painKillers, setPainKillers] = useState([]);
-  const [antibiotics, setAntibiotics] = useState([]);
-  const [newArrivals, setNewArrivals] = useState([]);
+  const [featuredCats, setFeaturedCats] = useState([]);
+  const [sections, setSections] = useState([]);
+  const [discounts, setDiscounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchHomeData = async () => {
-      try {
-        setLoading(true);
-        
-        // Fetch data for all sections in parallel
-        // We request 8 items for each specific category
-        const [supplementsRes, painRes, antibioticRes, latestRes] = await Promise.all([
-           fetch(`${API_URL}?category=supplements&limit=8`),
-           fetch(`${API_URL}?category=painkillers&limit=8`),
-           fetch(`${API_URL}?category=antibiotics&limit=8`),
-           fetch(`${API_URL}?limit=8`) // For "New Arrivals" fallback
-        ]);
+    const loadData = async () => {
+      setLoading(true);
+      const data = await fetchHomeConfig();
+      
+      if (data) {
+          // 1. Bubbles
+          setFeaturedCats(data.categories || []);
 
-        const [supplementsData, painData, antibioticData, latestData] = await Promise.all([
-            supplementsRes.json(),
-            painRes.json(),
-            antibioticRes.json(),
-            latestRes.json()
-        ]);
+          // 2. Sections (Rows)
+          const formatItems = (items) => items.map(item => ({
+             id: item.id.toString(),
+             productName: item.name,
+             imgUrl: item.imageUrl || "https://via.placeholder.com/200",
+             category: "Health",
+             price: Number(item.retailPrice),
+             discount: item.discountPercent || 0,
+             description: item.name,
+          }));
 
-        // Helper function to map backend data to frontend structure
-        const mapData = (data) => {
-            if(!data.success || !data.data.items) return [];
-            return data.data.items.map(item => ({
-                id: item.id.toString(),
-                productName: item.name,
-                imgUrl: item.image || "https://via.placeholder.com/200",
-                category: item.category ? item.category.toLowerCase() : "general",
-                price: Number(item.price),
-                discount: 0,
-                shortDesc: item.category,
-                description: item.name,
-            }));
-        };
-
-        setSupplements(mapData(supplementsData));
-        setPainKillers(mapData(painData));
-        setAntibiotics(mapData(antibioticData));
-        setNewArrivals(mapData(latestData));
-
-      } catch (error) {
-        console.error("Error fetching home data:", error);
-      } finally {
-        setLoading(false);
+          const formattedSections = (data.sections || []).map(sec => ({
+              id: sec.id,
+              title: sec.title,
+              items: formatItems(sec.items)
+          }));
+          
+          setSections(formattedSections);
+          setDiscounts(formatItems(data.discounts || []));
       }
+      setLoading(false);
     };
 
-    fetchHomeData();
+    loadData();
   }, []);
 
-  if (loading) {
-    return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '50vh', 
-        color: '#5bb318', 
-        fontSize: '20px', 
-        fontWeight: 'bold' 
-      }}>
-        Loading Quick Medics...
-      </div>
-    );
-  }
+  if (loading) return <div className="text-center py-5">Loading...</div>;
 
   return (
     <Fragment>
       <SliderHome />
+      <CategorySection categories={featuredCats} />
+      
+      {/* Dynamic Sections from Admin Panel */}
+      {sections.map(section => (
+          <Section 
+            key={section.id} 
+            title={section.title} 
+            bgColor={section.id % 2 === 0 ? "#f0fff4" : "#ffffff"} 
+            productItems={section.items} 
+          />
+      ))}
+
+      {/* Discount Row (If any) */}
+      {discounts.length > 0 && (
+        <Section title="Big Discounts" bgColor="#fff0f3" productItems={discounts} />
+      )}
+      
       <Wrapper />
-      
-      {/* Section 1: Multivitamins / Supplements 
-          Changed bgColor to #f0fff4 (Light Mint) to match the Lime theme 
-      */}
-      <Section
-        title="Multivitamins & Supplements"
-        bgColor="#f0fff4"
-        productItems={supplements.length > 0 ? supplements : newArrivals}
-      />
-      
-      {/* Section 2: Pain Relief 
-          Kept White to create contrast with the sections above and below
-      */}
-      <Section
-        title="Pain Relief"
-        bgColor="#ffffff"
-        productItems={painKillers.length > 0 ? painKillers : newArrivals}
-      />
-      
-      {/* Section 3: Antibiotics 
-          Changed bgColor to #f0fff4 (Light Mint) to match the Lime theme
-      */}
-      <Section 
-        title="Antibiotics" 
-        bgColor="#f0fff4" 
-        productItems={antibiotics.length > 0 ? antibiotics : newArrivals} 
-      />
     </Fragment>
   );
 };

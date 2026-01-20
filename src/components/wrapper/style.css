@@ -1,18 +1,22 @@
 .wrapper {
   text-align: center;
   background-color: white;
+  /* FIX: Adds space between the products and this section */
+  margin-top: 80px; 
+  padding-bottom: 50px;
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   font-size: 25px;
   background: #f3f5f9;
-  margin: 20px auto;
+  margin: 0 auto 20px auto;
+  transition: all 0.5s ease;
 }
 
 .wrapper .row {
@@ -20,18 +24,22 @@
 }
 
 .wrapper .feature {
-  padding: 10px;
-  border: 4px solid white;
+  padding: 40px 20px;
+  /* FIX: Increased white border to create gaps between the colored cards */
+  border: 15px solid white; 
+  border-radius: 5px;
 }
 
 .wrapper .feature h3 {
   font-size: 18px;
-  font-weight: 500;
-  width: fit-content;
-  margin: 0 auto !important;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .wrapper p {
   font-size: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
+  color: #555;
+  line-height: 1.6;
 }

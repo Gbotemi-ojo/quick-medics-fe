@@ -1,0 +1,226 @@
+/* --- HERO SLIDER --- */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.hero-slide-item {
+  position: relative;
+  height: 500px; /* Force height */
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* New Image Style */
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers area without stretching */
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 600px;
+  padding-left: 80px;
+  padding-right: 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.hero-btn {
+  padding: 15px 40px;
+  background: #5bb318;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-btn:hover {
+  background: white;
+  color: #5bb318;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- CATEGORY GRID --- */
+.category-section {
+  padding: 0 0 50px 0;
+}
+
+.category-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.cat-card {
+  position: relative;
+  height: 280px;
+  border-radius: 20px;
+  padding: 30px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.cat-img-wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+}
+
+.cat-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.cat-info h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.cat-link {
+  color: #555;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s;
+}
+
+.cat-card:hover .cat-link {
+  gap: 10px;
+  color: #000;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-slide-item { height: 350px; }
+  .hero-content { padding-left: 20px; padding-right: 20px; text-align: center; margin: 0 auto;}
+  .hero-content h1 { font-size: 2rem; }
+  .cat-card { height: 200px; }
+}
+/* ... (Keep your existing styles for hero-slider, hero-img, etc.) ... */
+
+/* --- SLIDER CONTROLS (ARROWS) --- */
+.control-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.control-btn button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3); /* Transparent White */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px); /* Nice glass effect */
+}
+
+.control-btn button:hover {
+  background: #5bb318; /* Lime Brand Color on Hover */
+  border-color: #5bb318;
+  color: white;
+  transform: scale(1.1);
+}
+
+.prev {
+  left: 30px;
+}
+
+.next {
+  right: 30px;
+}
+
+/* Move dots up slightly so they don't fall off screen */
+.slick-dots {
+  bottom: 25px !important;
+}
+
+.slick-dots li button:before {
+  color: white !important;
+  font-size: 12px !important;
+  opacity: 0.7 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #5bb318 !important; /* Lime active dot */
+  opacity: 1 !important;
+}
+
