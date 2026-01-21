@@ -1,72 +1,95 @@
-/* slidercard.css */
-.homeSlide .box {
-  margin-top: 40px; /* Reduced top margin for better flow */
-  padding: 60px 40px;
-  background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%); /* Soft Lime Gradient */
-  border-radius: 20px; /* Modern rounded look */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+/* Container for the slide */
+.box {
+  position: relative;
+  height: 550px; /* Taller hero section */
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center; /* Vertically center content */
 }
 
-.homeSlide h1 {
-  font-size: 50px; /* Bigger font */
-  line-height: 1.2;
-  margin: 30px 0 20px 0;
-  color: #2d3436; /* Dark grey instead of harsh black */
-  font-weight: 700;
+/* The dark fade effect on the left side */
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradient from Dark Grey (80% opacity) to Transparent */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0,0,0,0) 100%);
+  z-index: 1;
 }
 
-.homeSlide p {
-  margin: 20px 0 40px 0;
+/* Container for text to sit on top of overlay */
+.slide-content {
+  position: relative;
+  z-index: 2; /* Sit above the gradient */
+  max-width: 600px; /* Restrict width so text doesn't hit the far right */
+  padding-left: 20px;
+}
+
+/* Heading Style - Matching 'how i want it.jpg' */
+.slide-title {
+  font-size: 60px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5); /* Drop shadow for pop */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: capitalize;
+}
+
+/* Description Style */
+.slide-desc {
   font-size: 18px;
-  color: #636e72;
-  max-width: 80%;
+  color: #e0e0e0; /* Off-white for readability */
+  margin-bottom: 30px;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 500px;
 }
 
-/* New Button Style */
+/* Shop Now Button - Lime Green */
 .btn-primary {
-  background-color: #5bb318; /* Vibrant Lime */
+  background-color: #5bb318; /* Your brand green */
   color: #fff;
+  font-size: 16px;
+  font-weight: 700;
   padding: 15px 40px;
-  font-size: 18px;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 30px;
   border: none;
-  font-weight: 600;
-  box-shadow: 0 5px 15px rgba(91, 179, 24, 0.3); /* Green glow shadow */
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(91, 179, 24, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #4a9412; /* Darker lime on hover */
-  transform: translateY(-3px); /* Lift effect */
+  background-color: #4a9e12;
+  transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(91, 179, 24, 0.4);
 }
 
-/* Dots navigation */
-.homeSlide ul {
-  position: absolute;
-  bottom: 30px;
-}
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .box {
+    height: 400px; /* Smaller on mobile */
+    background-position: center; /* Keep image centered */
+  }
+  
+  .slide-title {
+    font-size: 32px; /* Smaller text */
+  }
 
-.homeSlide ul li {
-  border: 2px solid #5bb318; /* Lime border */
-  border-radius: 50%;
-  padding: 8px;
-  margin: 0 5px;
-}
-
-.homeSlide ul li.slick-active {
-  background-color: #5bb318; /* Filled lime for active dot */
-}
-
-.homeSlide ul li button::before {
-  font-size: 12px !important;
-  color: transparent !important; /* Hide default slick dots */
-}
-
-.homeSlide .box img {
-  width: 100%;
-  max-height: 400px; /* Increased height */
-  object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); /* Shadow specifically for the image PNG */
+  .slide-desc {
+    font-size: 14px;
+    display: none; /* Optionally hide description on very small screens to save space */
+  }
+  
+  .gradient-overlay {
+    /* Darker overlay on mobile since text covers more of the image */
+    background: rgba(0,0,0,0.6); 
+  }
 }

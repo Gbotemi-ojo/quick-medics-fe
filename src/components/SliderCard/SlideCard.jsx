@@ -1,21 +1,22 @@
-import { Col, Container, Row } from "react-bootstrap";
-import "./slidercard.css";
+import React from "react"
+import { Container } from "react-bootstrap"
+import "./slidercard.css"
 
 const SlideCard = ({ title, desc, cover }) => {
   return (
-    <Container className='box'>
-      <Row className="align-items-center"> {/* Align items center vertically */}
-        <Col md={6}>
-          <h1>{title}</h1>
-          <p>{desc}</p>
-          <button className='btn-primary'>Visit Collections</button>
-        </Col>
-        <Col md={6}>
-          <img src={cover} alt="Hero Slide" />
-        </Col>
-      </Row>
-    </Container>
+    <div className='box' style={{ backgroundImage: `url(${cover})` }}>
+      <div className="gradient-overlay"></div>
+      
+      {/* Container keeps the text aligned with your Logo/Header */}
+      <Container>
+        <div className="slide-content">
+            <h1 className="slide-title">{title}</h1>
+            <p className="slide-desc">{desc}</p>
+            <button className='btn-primary'>SHOP NOW</button>
+        </div>
+      </Container>
+    </div>
   )
 }
 
-export default SlideCard;
+export default SlideCard

@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import "./home.css"
-import { SliderData } from "../utils/products"
+import SlideCard from "./SliderCard/SlideCard"
+import { fetchBanners } from "../api" // Correct relative import to src/api.js
+import "./home.css" // Ensure you have the button styles here
 
-// --- Custom Arrow Components ---
+// --- Custom Navigation Arrows ---
 const NextArrow = (props) => {
   const { onClick } = props
   return (
@@ -29,39 +30,59 @@ const PrevArrow = (props) => {
 }
 
 const SliderHome = () => {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const loadSlides = async () => {
+        const data = await fetchBanners();
+        if (data.length > 0) {
+            // Map DB format to Slider format
+            const mapped = data.map(b => ({
+                id: b.id,
+                title: b.title,
+                desc: b.description,
+                cover: b.imageUrl // Uses Cloudinary URL
+            }));
+            setSlides(mapped);
+        } else {
+            // Fallback if no banners in DB
+            setSlides([
+                {
+                    id: 1,
+                    title: "Welcome to Quick Medics",
+                    desc: "Your health, our priority.",
+                    cover: "https://via.placeholder.com/1600x500?text=Welcome"
+                }
+            ]);
+        }
+    };
+    loadSlides();
+  }, []);
+
   const settings = {
-    dots: true,
+    nav: true, // Enable navigation
+    dots: true, // Enable dots at bottom
     infinite: true,
-    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    arrows: true, // Enabled arrows
-    nextArrow: <NextArrow />, // Use custom Next button
-    prevArrow: <PrevArrow />, // Use custom Prev button
+    arrows: true, // Enable arrows
+    nextArrow: <NextArrow />, 
+    prevArrow: <PrevArrow />, 
   }
 
+  // NOTE: No <Container> wrapper here, allowing the slider to go full width
   return (
-    <section className='hero-slider'>
-        <Slider {...settings}>
-          {SliderData.map((value, index) => {
-            return (
-              <div className="hero-slide-item" key={index}>
-                  <img src={value.cover} alt={value.title} className="hero-img" />
-                  
-                  <div className="hero-overlay"></div>
-                  
-                  <div className="hero-content">
-                      <h1>{value.title}</h1>
-                      <p>{value.desc}</p>
-                      <button className="hero-btn">Shop Now</button>
-                  </div>
-              </div>
-            )
-          })}
-        </Slider>
-    </section>
+      <section className='homeSlide'>
+          <Slider {...settings}>
+            {slides.map((value, index) => {
+              return (
+                <SlideCard key={index} title={value.title} cover={value.cover} desc={value.desc} />
+              )
+            })}
+          </Slider>
+      </section>
   )
 }
 

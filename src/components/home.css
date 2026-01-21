@@ -223,4 +223,52 @@
   color: #5bb318 !important; /* Lime active dot */
   opacity: 1 !important;
 }
+/* --- SLIDER CONTROLS (ARROWS) --- */
+.control-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; /* Must be higher than the gradient overlay (which is z-index: 1) */
+  cursor: pointer;
+}
 
+.control-btn button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.control-btn button:hover {
+  background: #5bb318; /* Lime Brand Color */
+  border-color: #5bb318;
+  color: white;
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+/* Move dots up so they are visible on top of the image */
+.slick-dots {
+  bottom: 25px !important;
+  z-index: 10;
+}
+
+.slick-dots li button:before {
+  color: white !important;
+  opacity: 0.7 !important;
+  font-size: 12px !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #5bb318 !important;
+  opacity: 1 !important;
+}
