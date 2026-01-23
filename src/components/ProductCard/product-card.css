@@ -1,23 +1,26 @@
-/* Modern Clean Card Style */
+/* Container: Clean, white card */
 .product-card-modern {
-    background: #fff;
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; /* Slightly tighter radius */
     padding: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Hover: Subtle shadow, no massive movement */
 .product-card-modern:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
     border-color: #5bb318;
-    transform: translateY(-5px);
 }
 
+/* Image Box */
 .img-container {
     width: 100%;
     height: 180px;
@@ -25,77 +28,94 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    overflow: hidden;
-    background: #f9f9f9;
-    border-radius: 8px;
+    background: #ffffff; /* Pure white background like reference */
+    padding: 10px;
 }
 
 .img-container img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .product-card-modern:hover img {
     transform: scale(1.05);
 }
 
+/* Typography - Title */
 .product-info {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .product-info .title {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 15px; /* Clean, professional size */
+    font-weight: 600; /* Semi-bold, not heavy */
     color: #333;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
     /* Limit to 2 lines */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 44px; 
+    height: 42px; 
 }
 
+/* Price Section - MATCHING YOUR SCREENSHOT */
 .price-row {
+    margin-top: auto; 
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .price-row .price {
     font-size: 18px;
-    font-weight: 700;
-    color: #0f3460;
+    font-weight: 700; /* Bold */
+    color: #0f3460; /* NAVY BLUE - Matches 'prefer.png' */
 }
 
+.price-row .original-price {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+/* Discount Badge */
 .badge-discount {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: #ff4757;
+    background: #ff4757; /* Standard Red */
     color: white;
     font-size: 11px;
     padding: 3px 8px;
-    border-radius: 4px;
+    border-radius: 4px; /* Boxy radius */
     z-index: 2;
 }
 
-/* Full Width Button like Screenshot */
+/* Button - MATCHING YOUR SCREENSHOT */
 .add-to-cart-btn {
     width: 100%;
-    background: #5bb318; /* Lime */
-    color: white;
+    background: #5bb318; /* Solid Lime Green */
+    color: #ffffff; /* White Text */
     border: none;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 5px; /* Slight rounded corners, NOT pill */
     font-weight: 600;
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: background 0.2s ease;
+    gap: 8px;
 }
 
 .add-to-cart-btn:hover {
-    background: #4a9413;
+    background: #4a9413; /* Darker Green on hover */
 }

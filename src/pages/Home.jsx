@@ -5,6 +5,8 @@ import Section from "../components/Section";
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { fetchHomeConfig } from "../api"; 
 import Wrapper from "../components/wrapper/Wrapper";
+import PartnerSlider from "../components/PartnerSlider"; 
+import HmoSection from "../components/HmoSection"; 
 
 const Home = () => {
   useWindowScrollToTop();
@@ -20,10 +22,8 @@ const Home = () => {
       const data = await fetchHomeConfig();
       
       if (data) {
-          // 1. Bubbles
           setFeaturedCats(data.categories || []);
 
-          // 2. Sections (Rows)
           const formatItems = (items) => items.map(item => ({
              id: item.id.toString(),
              productName: item.name,
@@ -54,9 +54,14 @@ const Home = () => {
   return (
     <Fragment>
       <SliderHome />
+      
+      {/* 1. Partner Slider Moved Here (Directly under Hero) */}
+      <PartnerSlider />
+      
+      {/* 2. Categories Follow */}
       <CategorySection categories={featuredCats} />
       
-      {/* Dynamic Sections from Admin Panel */}
+      {/* Dynamic Sections */}
       {sections.map(section => (
           <Section 
             key={section.id} 
@@ -66,11 +71,13 @@ const Home = () => {
           />
       ))}
 
-      {/* Discount Row (If any) */}
+      {/* Discount Row */}
       {discounts.length > 0 && (
         <Section title="Big Discounts" bgColor="#fff0f3" productItems={discounts} />
       )}
       
+      <HmoSection /> 
+
       <Wrapper />
     </Fragment>
   );

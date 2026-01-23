@@ -3,17 +3,14 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import SlideCard from "./SliderCard/SlideCard"
-import { fetchBanners } from "../api" // Correct relative import to src/api.js
-import "./home.css" // Ensure you have the button styles here
+import { fetchBanners } from "../api" 
+import "./home.css" 
 
-// --- Custom Navigation Arrows ---
 const NextArrow = (props) => {
   const { onClick } = props
   return (
     <div className='control-btn next' onClick={onClick}>
-      <button>
-        <i className='fa fa-chevron-right'></i>
-      </button>
+      <button><i className='fa fa-chevron-right'></i></button>
     </div>
   )
 }
@@ -22,9 +19,7 @@ const PrevArrow = (props) => {
   const { onClick } = props
   return (
     <div className='control-btn prev' onClick={onClick}>
-      <button>
-        <i className='fa fa-chevron-left'></i>
-      </button>
+      <button><i className='fa fa-chevron-left'></i></button>
     </div>
   )
 }
@@ -36,16 +31,14 @@ const SliderHome = () => {
     const loadSlides = async () => {
         const data = await fetchBanners();
         if (data.length > 0) {
-            // Map DB format to Slider format
             const mapped = data.map(b => ({
                 id: b.id,
                 title: b.title,
                 desc: b.description,
-                cover: b.imageUrl // Uses Cloudinary URL
+                cover: b.imageUrl 
             }));
             setSlides(mapped);
         } else {
-            // Fallback if no banners in DB
             setSlides([
                 {
                     id: 1,
@@ -60,19 +53,19 @@ const SliderHome = () => {
   }, []);
 
   const settings = {
-    nav: true, // Enable navigation
-    dots: true, // Enable dots at bottom
+    nav: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: true, // Enable arrows
+    autoplaySpeed: 5000, // 5 Seconds
+    pauseOnHover: false, // Don't stop when mouse hovers
+    arrows: true, 
     nextArrow: <NextArrow />, 
     prevArrow: <PrevArrow />, 
+    dots: true
   }
 
-  // NOTE: No <Container> wrapper here, allowing the slider to go full width
   return (
       <section className='homeSlide'>
           <Slider {...settings}>

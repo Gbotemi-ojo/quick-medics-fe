@@ -1,0 +1,50 @@
+.partner-section {
+  padding: 50px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-top: 40px;
+}
+
+/* Center heading and add a small green underline */
+.partner-section .heading h2 {
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.heading-line {
+  width: 60px;
+  height: 4px;
+  background: #5bb318; /* Quick Medics Green */
+  margin: 0 auto 30px auto;
+  border-radius: 2px;
+}
+
+/* Logo Box styling */
+.partner-logo-box {
+  padding: 20px;
+  display: flex !important; /* Important override for slick slider */
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  outline: none; /* Remove click outline */
+}
+
+/* Image styling - Grayscale effect for "premium" look */
+.partner-img {
+  max-width: 100%;
+  max-height: 70px; /* Constrain height so logos look equal */
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+/* Hover effect - Bring back color and full opacity */
+.partner-logo-box:hover .partner-img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1); /* Slight zoom */
+}
