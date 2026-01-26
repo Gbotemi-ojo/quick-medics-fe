@@ -130,6 +130,10 @@ button {
     font-weight: 700;
     color: var(--lime-600);
 }
+.logo:hover {
+    color: var(--lime-500); /* Slightly lighter green on hover */
+    text-decoration: none;
+}
 
 .nav-actions {
     display: flex;

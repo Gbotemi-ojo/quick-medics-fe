@@ -8,7 +8,7 @@ export const SliderData = [
   {
     id: 1,
     title: "Your One-Stop Pharmacy & Wellness Store",
-    desc: "From trusted medications to everyday beverages, shop everything you need for your health and lifestyle at Quick Medics Pharmacy.",
+    desc: "From trusted medications to everyday beverages, shop everything you need for your health and lifestyle at QuickMedics Pharmacy.",
     cover: novacrestImg1,
   },
   {
@@ -26,7 +26,7 @@ export const SliderData = [
   {
     id: 4,
     title: "Everyday Essentials, All in One Place",
-    desc: "Shop a unique blend of pharmaceuticals and lifestyle products — from wellness drinks to skin care — only at Quick Medics.",
+    desc: "Shop a unique blend of pharmaceuticals and lifestyle products — from wellness drinks to skin care — only at QuickMedics.",
     cover: novacrestImg4,
   },
 ];
@@ -36,7 +36,7 @@ export const serviceData = [
   {
     icon: <ion-icon name="medkit-outline"></ion-icon>,
     title: "Professional Care",
-    subtitle: "At Quick Medics ,Our licensed pharmacists provide expert guidance and ensure safe dispensing of medications.",
+    subtitle: "At QuickMedics, Our licensed pharmacists provide expert guidance and ensure safe dispensing of medications.",
     bg: "#fdefe6",
   },
   {

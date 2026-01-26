@@ -1,0 +1,109 @@
+.affiliate-section {
+    padding: 80px 0;
+    background-color: #f4fbf4; /* Light Green Tint */
+    min-height: 90vh;
+}
+
+.section-title {
+    font-weight: 800;
+    color: #1a1a1a;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+}
+
+.subtitle-text {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 15px auto 0;
+}
+
+.badge-pill {
+    background: #e8f5e9;
+    color: #5bb318;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.green-line {
+    width: 80px;
+    height: 4px;
+    background: #5bb318;
+    border-radius: 2px;
+    margin: 25px auto;
+}
+
+/* Benefit Cards */
+.benefit-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #eef2ee;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: #5bb318;
+}
+
+.icon-box {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.benefit-card h4 {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.benefit-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* CTA Card */
+.cta-card {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(91, 179, 24, 0.08);
+    margin-top: 20px;
+    border: 1px solid #eef2ee;
+}
+
+.cta-card h3 {
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25D366; /* WhatsApp Green */
+    color: white !important;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+    background-color: #1ebc57;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}

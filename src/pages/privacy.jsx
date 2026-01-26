@@ -2,7 +2,7 @@
 import './privacy.css';
 
 /**
- * Privacy Policy for Quick Medics Pharmacy
+ * Privacy Policy for QuickMedics Pharmacy
  * File: privacy.jsx
  */
 export default function PrivacyPolicy() {
@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
       <h1 className="privacy-title">Privacy Policy</h1>
 
       <p className="privacy-text">
-        At <strong>Quick Medics Pharmacy</strong> ("we", "us", or "our"), your privacy is of utmost importance. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you visit our website or use our services.
+        At <strong>QuickMedics Pharmacy</strong> ("we", "us", or "our"), your privacy is of utmost importance. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you visit our website or use our services.
       </p>
 
       <h2 className="privacy-section-title">1. Information We Collect</h2>
@@ -57,7 +57,7 @@ export default function PrivacyPolicy() {
 
       <h2 className="privacy-section-title">8. Contact Us</h2>
       <p className="privacy-text">
-        Quick Medics Pharmacy<br />
+        QuickMedics Pharmacy<br />
         Email: <a href="mailto:privacy@QuickMedicspharmacy.com" className="privacy-link">privacy@QuickMedicspharmacy.com</a><br />
         Phone: 0816 394 3804<br />
         Address: 2,3,4,5 Guide Plaza, Alaja Road, Megida-Ipaja Lagos NG, Ayobo-Ipaja Rd, Ayobo, 100270

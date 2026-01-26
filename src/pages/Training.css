@@ -1,0 +1,66 @@
+.training-section {
+    padding: 60px 0;
+    background-color: #f9fcf9;
+    min-height: 80vh;
+}
+
+.training-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.section-title {
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.green-line {
+    width: 60px;
+    height: 4px;
+    background: #5bb318;
+    border-radius: 2px;
+    margin: 15px auto;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #5bb318;
+    box-shadow: 0 0 0 3px rgba(91, 179, 24, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #5bb318;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #4a9413;
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

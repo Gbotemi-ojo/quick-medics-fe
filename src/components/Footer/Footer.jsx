@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for SPA navigation
+import { Link } from "react-router-dom"; 
+import logoImg from "../../Images/qm-1.jpg"; 
 import "./Footer.css";
 
 // --- SVG Icons ---
@@ -22,7 +23,6 @@ const WhatsAppIconFloating = () => (
   </svg>
 );
 
-// --- Main Footer Component ---
 export default function Footer() {
   return (
     <footer className="footer-container">
@@ -36,9 +36,17 @@ export default function Footer() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-column">
-              <h3 className="footer-logo">Quick Medics</h3>
+              <h3 className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <img 
+                    src={logoImg} 
+                    alt="QuickMedics" 
+                    style={{ height: '40px', width: 'auto', borderRadius: '8px' }} 
+                />
+                QuickMedics
+              </h3>
+              
               <p className="footer-about">
-                Dedicated to your family's health, Quick Medics 
+                Dedicated to your family's health, QuickMedics 
                 offers expert care and authentic drugs, ensuring wellness is always within your reach.
               </p>
               <div className="social-links">
@@ -62,6 +70,8 @@ export default function Footer() {
               <ul className="footer-links">
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/services">Our Services</Link></li>
+                <li><Link to="/training">Pharmacy Training</Link></li>
+                <li><Link to="/affiliate">Affiliate Program</Link></li> {/* <--- NEW LINK */}
                 <li><Link to="/contact">Contact Us</Link></li>
                 <li><Link to="/privacy">Privacy Policy</Link></li>
                 <li><Link to="/terms">Terms & Conditions</Link></li>
@@ -84,7 +94,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-content">
-          <p>© 2026 Quick Medics. All Rights Reserved.</p>
+          <p>© 2026 QuickMedics. All Rights Reserved.</p>
           <div className="bottom-links">
             <Link to="/faq">FAQ</Link>
             <Link to="/privacy">Privacy Policy</Link>

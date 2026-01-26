@@ -30,6 +30,10 @@ const Services = lazy(() => import("./pages/Services"));
 const Faq = lazy(() => import("./pages/Faq"));
 const Returns = lazy(() => import("./pages/Returns"));
 
+// training
+const TrainingApplication = lazy(() => import("./pages/TrainingApplication"));
+const AffiliatePage = lazy(() => import("./pages/AffiliatePage"));
+
 function App() {
   return (
     <Suspense fallback={<Loader />}>
@@ -72,6 +76,8 @@ function App() {
             <Route path="/blogdetail/:id" element={<BlogDetail />} />
             <Route path="/bloglist" element={<BlogList />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/training" element={<TrainingApplication />}/>
+            <Route path="/affiliate" element={<AffiliatePage />} />
           </Routes>
         </div>
 

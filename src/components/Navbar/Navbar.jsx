@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/features/auth/authSlice";
+import logoImg from "../../Images/qm-1.jpg"; 
 import './navbar.css';
 
 // --- SVG Icons ---
@@ -52,9 +53,12 @@ export default function Navbar() {
     { name: "Antimalarial", link: "/shop?category=antimalarial" },
   ];
 
+  // UPDATED: Added Affiliate Link
   const navLinks = [
     { name: 'Shop By Category', dropdown: true, link: "/shop", items: categories },
     { name: 'Services', dropdown: false, link: "/services" },
+    { name: 'Training', dropdown: false, link: "/training" },
+    { name: 'Affiliate Program', dropdown: false, link: "/affiliate" }, // <--- NEW LINK
     { name: 'About Us', dropdown: false, link: "/about" },
     { name: 'Contact Us', dropdown: false, link: "/contact" },
   ];
@@ -81,7 +85,15 @@ export default function Navbar() {
         <div className={`main-nav-wrapper ${isFixed ? 'fixed-nav' : ''}`}>
           <div className="container">
             <div className="main-nav">
-              <Link to="/" className="logo">Quick Medics</Link>
+              
+              <Link to="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <img 
+                    src={logoImg} 
+                    alt="QuickMedics" 
+                    style={{ height: '45px', width: 'auto', borderRadius: '8px' }} 
+                />
+                QuickMedics
+              </Link>
               
               <div className="desktop-search-container">
                 <form onSubmit={handleSearch} className="search-wrapper">
@@ -92,16 +104,13 @@ export default function Navbar() {
               
               <div className="nav-actions">
                 {isAuthenticated ? (
-                    // --- USER LOGGED IN DROPDOWN ---
                     <div className="nav-link-item account-link" style={{cursor:'pointer', position: 'relative'}}>
                         <UserIcon className="icon-large" />
                         <div>
                             <p>Hi, {user?.name?.split(' ')[0]}</p>
                             <p className="account-subtitle">Account <ChevronDownIcon className="icon-small" /></p>
                         </div>
-                        {/* Dropdown Menu for User */}
                         <div className="dropdown-menu" style={{right: '0', left: 'auto', minWidth: '160px'}}>
-                            {/* NEW: Link to Profile */}
                             <Link to="/profile" className="nav-link" style={{padding: '0.8rem 1rem', display: 'block', width: '100%', color: 'var(--gray-800)'}}>
                                 My Account
                             </Link>
@@ -118,7 +127,6 @@ export default function Navbar() {
                         </div>
                     </div>
                 ) : (
-                    // --- GUEST LOGIN LINK ---
                     <Link to="/login" className="account-link">
                         <UserIcon className="icon-large" />
                         <div>

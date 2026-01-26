@@ -13,7 +13,7 @@ const About = () => {
           <Col md={10}>
             <h2 className="mb-4" style={{color: '#0f3460'}}>Dedicated to Your Wellness</h2>
             <p className="lead">
-              Quick Medics is more than just a pharmacy; we are your partners in health. 
+              QuickMedics is more than just a pharmacy; we are your partners in health. 
               Founded with the mission to bridge the gap between quality healthcare and accessibility, 
               we ensure that genuine medications and expert advice are always within your reach.
             </p>

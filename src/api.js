@@ -171,3 +171,12 @@ export const changePassword = async (passwords) => {
   }
   return await response.json();
 };
+
+export const submitTrainingApplication = async (formData) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/training/apply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    });
+    return await response.json();
+};

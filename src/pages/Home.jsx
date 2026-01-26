@@ -56,7 +56,6 @@ const Home = () => {
       <SliderHome />
       
       {/* 1. Partner Slider Moved Here (Directly under Hero) */}
-      <PartnerSlider />
       
       {/* 2. Categories Follow */}
       <CategorySection categories={featuredCats} />
@@ -75,7 +74,7 @@ const Home = () => {
       {discounts.length > 0 && (
         <Section title="Big Discounts" bgColor="#fff0f3" productItems={discounts} />
       )}
-      
+       <PartnerSlider />
       <HmoSection /> 
 
       <Wrapper />

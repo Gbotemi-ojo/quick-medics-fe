@@ -6,7 +6,7 @@ import Banner from "../components/Banner/Banner";
 const Contact = () => {
   useWindowScrollToTop();
   
-  // Quick Medics Theme Colors
+  // QuickMedics Theme Colors
   const theme = {
     primary: '#5bb318',      // Lime Green
     bgLight: '#f0fff4',      // Mint Cream
@@ -64,7 +64,7 @@ const Contact = () => {
                 allowFullScreen={true} 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Quick Medics Location"
+                title="QuickMedics Location"
               ></iframe>
             </div>
           </Col>

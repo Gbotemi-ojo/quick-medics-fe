@@ -42,7 +42,7 @@ const SliderHome = () => {
             setSlides([
                 {
                     id: 1,
-                    title: "Welcome to Quick Medics",
+                    title: "Welcome to QuickMedics",
                     desc: "Your health, our priority.",
                     cover: "https://via.placeholder.com/1600x500?text=Welcome"
                 }
