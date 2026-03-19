@@ -1,26 +1,53 @@
 export const EXTERNAL_API_URL = 'https://quick-medics-be.vercel.app/api';
-// export const EXTERNAL_API_URL = 'http://localhost:5000/api';
+
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   return token ? { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
     : { 'Content-Type': 'application/json' };
 };
 
-// --- CONTENT ---
 export const fetchBanners = async () => {
   try {
     const response = await fetch(`${EXTERNAL_API_URL}/banners`);
     if (!response.ok) return [];
     const result = await response.json();
-    // Filter only active banners
     return (result.data || []).filter(b => b.isActive);
   } catch (error) {
-    console.error("Banner Error:", error);
+    console.error(error);
     return [];
   }
 };
 
-// ... Auth Functions (loginUser, googleLogin, resetPassword) ...
+export const createBanner = async (formData) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${EXTERNAL_API_URL}/banners`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    });
+    if(!response.ok) throw new Error("Upload failed");
+    return await response.json();
+};
+
+export const deleteBanner = async (id) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/banners/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders()
+    });
+    return await response.json();
+};
+
+export const toggleBannerStatus = async (id, isActive) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/banners/${id}/status`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ isActive })
+    });
+    return await response.json();
+};
+
 export const loginUser = async (email, password) => {
   const response = await fetch(`${EXTERNAL_API_URL}/auth/login`, {
     method: 'POST',
@@ -70,7 +97,6 @@ export const confirmPasswordReset = async (email, otp, newPassword) => {
   return await response.json();
 };
 
-// --- HOME CONFIG (NEW) ---
 export const fetchHomeConfig = async () => {
   try {
     const response = await fetch(`${EXTERNAL_API_URL}/drugs/home-config`);
@@ -78,7 +104,7 @@ export const fetchHomeConfig = async () => {
     const result = await response.json();
     return result.data;
   } catch (error) {
-    console.error("Home Config Error:", error);
+    console.error(error);
     return null;
   }
 };
@@ -90,7 +116,7 @@ export const fetchCategories = async () => {
     const result = await response.json();
     return result.data || [];
   } catch (error) {
-    console.error("Failed to fetch categories", error);
+    console.error(error);
     return [];
   }
 };
@@ -110,9 +136,99 @@ export const fetchDrugs = async (page = 1, limit = 20, search = '', sortBy = 'cr
   return result.data;
 };
 
-// ... Payment, Orders, Profile functions ...
+export const createDrug = async (drugData) => {
+  const response = await fetch(`${EXTERNAL_API_URL}/drugs`, {
+    method: 'POST',
+    headers: getAuthHeaders(),
+    body: JSON.stringify(drugData),
+  });
+  return await response.json();
+};
+
+export const updateDrug = async (id, drugData) => {
+  const response = await fetch(`${EXTERNAL_API_URL}/drugs/${id}`, {
+    method: 'PUT',
+    headers: getAuthHeaders(),
+    body: JSON.stringify(drugData),
+  });
+  return await response.json();
+};
+
+export const deleteDrug = async (id) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders()
+    });
+    return await response.json();
+};
+
+export const updateCategory = async (id, data) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/categories/${id}`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(data)
+    });
+    return await response.json();
+};
+
+export const fetchSections = async () => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/sections`, { headers: getAuthHeaders() });
+    const result = await response.json();
+    return result.data || [];
+};
+
+export const createSection = async (data) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/sections`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(data)
+    });
+    return await response.json();
+};
+
+export const deleteSection = async (id) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/sections/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders()
+    });
+    return await response.json();
+};
+
+export const fetchSectionItems = async (sectionId) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/sections/${sectionId}/items`, { headers: getAuthHeaders() });
+    const result = await response.json();
+    return result.data || [];
+};
+
+export const updateSectionItems = async (sectionId, drugIds) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/drugs/sections/${sectionId}/items`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ drugIds })
+    });
+    return await response.json();
+};
+
+export const fetchAllOrders = async () => {
+    const response = await fetch(`${EXTERNAL_API_URL}/orders/all?t=${new Date().getTime()}`, {
+        headers: getAuthHeaders(),
+    });
+    if(!response.ok) throw new Error("Failed to fetch orders");
+    const result = await response.json();
+    return result.data; 
+};
+
+export const updateOrderStatus = async (orderId, status) => {
+    const response = await fetch(`${EXTERNAL_API_URL}/orders/${orderId}/status`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ status }),
+    });
+    return await response.json();
+};
+
 export const getPaystackKey = async () => {
-  const response = await fetch(`${EXTERNAL_API_URL}/payment/config`);
+  const response = await fetch(`${EXTERNAL_API_URL}/payment/config?t=${new Date().getTime()}`);
   if (!response.ok) throw new Error('Failed to fetch payment config');
   const result = await response.json();
   return result.key;

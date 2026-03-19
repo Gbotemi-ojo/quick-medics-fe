@@ -71,7 +71,7 @@ export default function Footer() {
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/services">Our Services</Link></li>
                 <li><Link to="/training">Pharmacy Training</Link></li>
-                <li><Link to="/affiliate">Affiliate Program</Link></li> {/* <--- NEW LINK */}
+                <li><Link to="/affiliate">Affiliate Program</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
                 <li><Link to="/privacy">Privacy Policy</Link></li>
                 <li><Link to="/terms">Terms & Conditions</Link></li>
@@ -81,10 +81,10 @@ export default function Footer() {
             <div className="footer-column">
               <h4 className="footer-heading">Our Office Address</h4>
               <p>2,3,4,5 Guide Plaza, Alaja Road, Megida-Ipaja Lagos NG</p>
-              <p>0816 394 3804</p>
+              <p>0816 394 3804, 0811 353 9265</p>
               <p>
-                <a href="mailto:hello@quickmedics.com" className="email-link">
-                  hello@quickmedics.com
+                <a href="mailto:admin@quickmedics.ng" className="email-link">
+                  admin@quickmedics.ng
                 </a>
               </p>
             </div>

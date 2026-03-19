@@ -28,6 +28,11 @@ const ProductDetails = ({ selectedProduct }) => {
           </Col>
           <Col md={6}>
             <h2>{selectedProduct?.productName}</h2>
+            {selectedProduct?.activeIngredient && (
+                <h6 style={{ color: "#888", fontWeight: "400", marginBottom: "15px" }}>
+                    API: {selectedProduct.activeIngredient}
+                </h6>
+            )}
             <div className="rate">
               <div className="stars">
                 <i className="fa fa-star"></i>

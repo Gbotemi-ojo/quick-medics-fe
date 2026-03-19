@@ -3,7 +3,6 @@ import "./product-card.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-// FIX: Use "../.." (2 dots) to reach 'src' from 'components/ProductCard'
 import { addToCart } from "../../app/features/cart/cartSlice"; 
 
 const ProductCard = ({ title, productItem }) => {
@@ -21,7 +20,6 @@ const ProductCard = ({ title, productItem }) => {
   };
 
   const hasDiscount = productItem.discount > 0;
-  // Calculate original price if discount exists
   const originalPrice = hasDiscount 
     ? productItem.price / (1 - productItem.discount / 100)
     : 0;
@@ -46,6 +44,11 @@ const ProductCard = ({ title, productItem }) => {
             <h3 className="title" title={productItem.productName}>
                 {productItem.productName}
             </h3>
+            {productItem.activeIngredient && (
+                <div style={{fontSize: "0.85rem", color: "#888", marginBottom: "8px", fontWeight: "300"}}>
+                    API: {productItem.activeIngredient}
+                </div>
+            )}
             
             <div className="price-row">
                 <span className="price">

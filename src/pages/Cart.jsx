@@ -78,7 +78,12 @@ const Cart = () => {
   const componentProps = {
     email,
     amount: totalPrice * 100,
-    metadata: { name, phone, address },
+    metadata: { 
+      name, 
+      phone, 
+      address,
+      cartItems: cartList // Added this to pass the cart to the webhook
+    },
     publicKey: paystackKey,
     text: `Pay ₦${totalPrice.toLocaleString()}`,
     onSuccess: handleSuccess,

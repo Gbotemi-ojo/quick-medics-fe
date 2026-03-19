@@ -27,6 +27,7 @@ const Home = () => {
           const formatItems = (items) => items.map(item => ({
              id: item.id.toString(),
              productName: item.name,
+             activeIngredient: item.activeIngredient,
              imgUrl: item.imageUrl || "https://via.placeholder.com/200",
              category: "Health",
              price: Number(item.retailPrice),
@@ -55,12 +56,8 @@ const Home = () => {
     <Fragment>
       <SliderHome />
       
-      {/* 1. Partner Slider Moved Here (Directly under Hero) */}
-      
-      {/* 2. Categories Follow */}
       <CategorySection categories={featuredCats} />
       
-      {/* Dynamic Sections */}
       {sections.map(section => (
           <Section 
             key={section.id} 
@@ -70,7 +67,6 @@ const Home = () => {
           />
       ))}
 
-      {/* Discount Row */}
       {discounts.length > 0 && (
         <Section title="Big Discounts" bgColor="#fff0f3" productItems={discounts} />
       )}
